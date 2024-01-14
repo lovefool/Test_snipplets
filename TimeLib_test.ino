@@ -5,6 +5,8 @@
 
 #define time_offset 32400    // UTC+9時間(3600 * 9 秒）
 
+char buf[256];
+
 void setup()
 {
   delay(500);
@@ -16,7 +18,11 @@ void setup()
   setTime(0, 0, 0, 14, 1, 2014);
   // adjustTime(time_offset);   //JST変換
 
-  Serial.println("JST");
+  Serial.println("Original Time");
+  sprintf(buf,"%4d/%02d/%2d %02d:%02d:%02d", year(),month(),day(),hour(),minute(),second());
+  Serial.println(buf);
+
+/*
   Serial.print(year());
   Serial.print(month());
   Serial.print(day());
@@ -24,12 +30,17 @@ void setup()
   Serial.print(hour());
   Serial.print(minute());
   Serial.println(second());
+*/
 }
 
 void loop(){
   adjustTime(time_offset);   //JST変換
 
   Serial.println("JST after adjust");
+  sprintf(buf,"%4d/%02d/%2d %02d:%02d:%02d", year(),month(),day(),hour(),minute(),second());
+  Serial.println(buf);
+
+/*
   Serial.print(year());
   Serial.print(month());
   Serial.print(day());
@@ -37,4 +48,5 @@ void loop(){
   Serial.print(hour());
   Serial.print(minute());
   Serial.println(second());
+*/
 } //end of loop
